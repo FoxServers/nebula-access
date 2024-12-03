@@ -1,0 +1,12 @@
+foxservers 0.2.1
+Usage: foxservers reload service
+
+reload will restart the specified service and any sub-services.
+
+The Command-Line Tool options are as follows:
+
+core                Restarts core and all sub-services
+plugins             Restarts core, core subservices, and all plugins
+webui               Restarts the core webui service
+whitelist           Restarts whitelist service
+update              Restarts the core update service

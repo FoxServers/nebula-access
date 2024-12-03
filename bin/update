@@ -1,0 +1,56 @@
+#!/bin/sh
+help() {
+    cat /opt/foxservers/core/man/update
+}
+
+if [ -z "$1" ]; then
+    echo "Must specify file name or tag. Type 'foxservers update help' for more info."
+    exit 22
+fi
+
+case "$1" in
+    help)
+        help
+        exit 0
+        ;;
+    releases)
+        curl -L "https://api.github.com/repos/FoxServers/core/releases" | grep "tag_name"
+        exit 0
+        ;;
+    *)
+        ;;
+esac
+
+case "$2" in
+    -y|-Y)
+        ;;
+    *)
+        read -p "Continuing with this update will shut down all servers, are you sure you want to update? [y/N]: " YESNO
+        YESNO="${YESNO:-"N"}"
+        case "$YESNO" in
+            y|Y)
+            ;;
+            *)
+            exit 0
+            ;;
+        esac
+        ;;
+esac
+
+sudo systemctl stop foxservers
+sudo mkdir /tmp/foxservers.bak/
+sudo mkdir /tmp/foxservers.bak/services/
+sudo cp -pf -r /opt/foxservers/ /tmp/foxservers.bak/
+sudo cp -pf /etc/systemd/system/foxservers.* /tmp/foxservers.bak/services/
+sudo mkdir /tmp/foxservers/
+sudo mkdir /tmp/foxservers/downloads/
+sudo curl -L https://api.github.com/repos/FoxServers/core/tarball/${1} -o /tmp/foxservers/downloads/core.${1}.tar.gz &&
+sudo tar -zvxf /tmp/foxservers/downloads/core.${1}.tar.gz --directory /tmp/foxservers/downloads --strip-components=1 &&
+cd /tmp/foxservers/downloads/ &&
+sudo chmod +x foxservers_install.sh &&
+sudo rm -R /opt/foxservers/ &&
+sudo rm -R /etc/systemd/system/foxservers.* &&
+./foxservers_install.sh &&
+sudo rm /tmp/foxservers/downloads/core.${1}.tar.gz &&
+sudo rm -rf /tmp/foxservers/downloads/{*,.*}
+cd /srv/foxservers/

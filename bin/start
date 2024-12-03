@@ -1,0 +1,13 @@
+#!/bin/sh
+help() {
+    cat /opt/foxservers/core/man/start
+}
+
+case "$1" in
+    help)
+        help
+        ;;
+    *)
+        sudo systemctl start foxservers
+        ;;
+esac

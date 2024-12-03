@@ -1,0 +1,4 @@
+foxservers 0.2.1
+Usage: foxservers start
+
+Starts all foxservers services

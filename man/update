@@ -1,0 +1,4 @@
+foxservers 0.2.1
+Usage: foxservers update [version]
+
+update will pull the specified version of FoxServers core and install it.

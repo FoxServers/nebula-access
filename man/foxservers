@@ -1,0 +1,22 @@
+foxservers 0.2.1
+Usage: foxservers [options] command
+
+FoxServers is a platform designed to host containerized Minecraft servers using Linux systemd services. It offers a customizable and scalable solution for server management through centralized tools and features.
+
+Core Features:
+- Quick Deployment: Simplified installation of scalable systemd services.
+- Centralized Management: Central whitelist database for managing server-specific whitelists.
+- Upcoming Enhancements: Update management and an intuitive web-based interface (WebUI) are under development.
+
+The FoxServers Command-Line Tool provides a lightweight, efficient way to initialize, manage, and operate servers on bare-metal systems or within virtual machines hosted on a hypervisor.
+
+The Command-Line Tool options are as follows:
+
+add [options]       Adds a server to the management service
+get [options]       Gets docker compose files from FoxServers repository
+init [options]      Initalizes server folder and configuration files
+reload [options]    Reloads select sub-services
+remove [options]    Removes a server from the management service
+restart             Restarts all servers/services
+start               Starts all servers/services
+stop                Stops all servers/services

@@ -1,0 +1,21 @@
+help() {
+    cat /opt/foxservers/core/man/autostart
+}
+
+case "$1" in
+    help)
+        help
+        ;;
+
+    enable)
+        sudo systemctl enable foxservers.service
+        ;;
+
+    disable)
+        sudo systemctl disable foxservers.service
+        ;;
+
+    *)
+        help
+        ;;
+esac

@@ -1,0 +1,4 @@
+foxservers 0.2.1
+Usage: foxservers add folder
+
+add will add the server to the server manager, making it an active service and updating its whitelist via the whitelist manager as configured.

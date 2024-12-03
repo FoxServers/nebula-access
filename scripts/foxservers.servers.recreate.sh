@@ -1,0 +1,1 @@
+sudo /opt/foxservers/.venv/bin/python /opt/foxservers/core/server/create_start_stop_all.py

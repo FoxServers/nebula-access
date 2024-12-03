@@ -1,0 +1,4 @@
+foxservers 0.2.1
+Usage: foxservers remove folder
+
+remove will remove the server to the server manager, deactivating its services and removing it from the whitelist manager.

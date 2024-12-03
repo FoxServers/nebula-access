@@ -1,0 +1,20 @@
+[Unit]
+Description=FoxServers Whitelist Manager
+# When systemd stops or restarts foxservers.server, the action is propagated to this unit
+PartOf=foxsevers.server.service
+# Start this unit after foxservers.server starts
+After=foxservers.server.service
+# Requires that server service is available
+Requires=foxservers.server.service
+
+[Service]
+# User is root service user
+User=root
+# Run bash script for whitelist management
+ExecStart=/usr/bin/bash /opt/foxservers/core/scripts/foxservers.whitelist.sh
+# Restart if script fails
+Restart=on-failure
+
+[Install]
+# This unit should start when foxservers.server is starting
+WantedBy=foxservers.server.service

@@ -1,0 +1,30 @@
+#!/bin/sh
+help() {
+    cat /opt/foxservers/core/man/reload
+}
+
+case "$1" in
+    help)
+        help
+        ;;
+    whitelist)
+        sudo systemctl restart foxservers.server.service
+        ;;
+    core)
+        sudo systemctl restart foxservers.core.service
+        ;;
+    plugins)
+        sudo systemctl restart foxservers.core.service
+        ;;
+    webui)
+        sudo systemctl restart foxservers.core.webui.service
+        ;;
+    update)
+        sudo systemctl restart foxservers.core.update.service
+        ;;
+    *)
+        help
+        ;;
+esac
+
+/usr/bin/bash

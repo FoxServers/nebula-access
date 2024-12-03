@@ -1,0 +1,20 @@
+#!/bin/sh
+help() {
+    cat /opt/foxservers/core/man/remove
+}
+
+if [ -z "$1" ]; then
+    echo "No server specified. Type 'foxservers remove help' for more info."
+    exit 22
+fi
+
+case "$1" in
+    help)
+        help
+        ;;
+
+    *)
+        /usr/bin/bash /opt/foxservers/core/scripts/foxservers.server.remove.sh ${1}
+        /usr/bin/bash /opt/foxservers/core/scripts/foxservers.servers.recreate.sh
+        ;;
+esac
