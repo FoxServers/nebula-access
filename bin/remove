@@ -1,20 +1,10 @@
 #!/bin/sh
-help() {
-    cat /opt/foxservers/core/man/remove
+whitelist_remove() {
+    if [ -z "$1" ]; then
+        /usr/bin/bash /opt/nebula/core/scripts/error
+        exit 22
+    fi
+    /usr/bin/bash /opt/nebula/extensions/access/scripts/remove ${1}
 }
 
-if [ -z "$1" ]; then
-    echo "No server specified. Type 'foxservers remove help' for more info."
-    exit 22
-fi
-
-case "$1" in
-    help)
-        help
-        ;;
-
-    *)
-        /usr/bin/bash /opt/foxservers/core/scripts/foxservers.server.remove.sh ${1}
-        /usr/bin/bash /opt/foxservers/core/scripts/foxservers.servers.recreate.sh
-        ;;
-esac
+register_hook "remove_hooks" "access_remove"

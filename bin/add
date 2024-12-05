@@ -1,20 +1,11 @@
 #!/bin/sh
-help() {
-    cat /opt/foxservers/core/man/add
+access_add() {
+    if [ -z "$1" ]; then
+        /usr/bin/bash /opt/nebula/core/scripts/error
+        exit 22
+    fi
+    /usr/bin/bash /opt/nebula/extensions/access/scripts/add ${1}
 }
 
-if [ -z "$1" ]; then
-    echo "Error: No arguement specified. Type 'foxservers add help' for more info."
-    exit 22
-fi
-
-case "$1" in
-    help)
-        help
-        ;;
-
-    *)
-        /usr/bin/bash /opt/foxservers/core/scripts/foxservers.server.add.sh ${1}
-        /usr/bin/bash /opt/foxservers/core/scripts/foxservers.servers.recreate.sh
-        ;;
-esac
+register_hook "add_hooks" "access_add"
+register_hook "init_hooks" "access_add"

@@ -1,6 +1,0 @@
-foxservers 0.2.1
-Usage: foxservers init folder path/to/.env path/to/dockerfile [optional] path/to/.zip [optional] path/to/.png
-
-init provides a simple one script setup for the server. Data by default is stored in /srv/foxservers/folder/, but can be customized in the dockerfile.
-init must be provided with the folder, path/to/.env, and path/to/dockerfile variables. Optionally can also be provided with a path to mods.zip and server_icon.png as defined in the .env file.
-The .env check can be skipped if using a custom dockerfile using the --skip-env argument in place of path/to/.env, however this is not recommended practice.

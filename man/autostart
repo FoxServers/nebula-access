@@ -1,4 +1,0 @@
-foxservers 0.2.1
-Usage: foxservers autostart [enable/disable]
-
-autostart manages the foxservers services autostart on boot settings. This can be enabled or disabled at will.
