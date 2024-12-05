@@ -1,20 +1,20 @@
 [Unit]
-Description=FoxServers Whitelist Manager
-# When systemd stops or restarts foxservers.server, the action is propagated to this unit
-PartOf=foxsevers.server.service
-# Start this unit after foxservers.server starts
-After=foxservers.server.service
+Description=Nebula Access Manager
+# When systemd stops or restarts nebula.servers.service, the action is propagated to this unit
+PartOf=nebula.servers.service
+# Start this unit after nebula.servers.service starts
+After=nebula.servers.service
 # Requires that server service is available
-Requires=foxservers.server.service
+Requires=nebula.servers.service
 
 [Service]
 # User is root service user
 User=root
 # Run bash script for whitelist management
-ExecStart=/usr/bin/bash /opt/foxservers/core/scripts/foxservers.whitelist.sh
+ExecStart=/usr/bin/bash /opt/nebula/extensions/access/scripts/whitelist
 # Restart if script fails
 Restart=on-failure
 
 [Install]
-# This unit should start when foxservers.server is starting
-WantedBy=foxservers.server.service
+# This unit should start when nebula.servers.service is starting
+WantedBy=nebula.servers.service
