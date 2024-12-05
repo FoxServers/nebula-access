@@ -18,8 +18,8 @@ def save_data(data):
         json.dump(data, file, indent=4)
 
 def update_server(server_name, data, logger):
-    data['servers'][server_name]['core'] = False
-    logger.info(f"[Server Manager] Updated {server_name} core to False")
+    data['servers'][server_name]['access'] = False
+    logger.info(f"[Server Manager] Updated {server_name} access to False")
     save_data(data)
 
 try:
