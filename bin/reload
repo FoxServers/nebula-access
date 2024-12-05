@@ -1,5 +1,5 @@
 #!/bin/sh
-whitelist_reload() {
+access_reload() {
     case "$1" in
         whitelist)
             sudo systemctl restart nebula.access.service
