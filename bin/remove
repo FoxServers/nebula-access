@@ -1,5 +1,5 @@
 #!/bin/sh
-whitelist_remove() {
+access_remove() {
     if [ -z "$1" ]; then
         /usr/bin/bash /opt/nebula/core/scripts/error
         exit 22
