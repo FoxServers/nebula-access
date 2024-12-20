@@ -1,10 +1,12 @@
 [Unit]
 Description=Nebula Access Manager
 # When systemd stops or restarts nebula.servers.service, the action is propagated to this unit
-PartOf=nebula.servers.service
-# Start this unit after nebula.servers.service starts
-After=nebula.servers.service
-# Requires that server service is available
+PartOf=nebula.core.extensions.service
+# Start this unit after nebula.core.extensions.service starts
+After=nebula.core.extensions.service
+# Requires that core extensioms are available
+Requires=nebula.core.extensions.service
+# Requires that servers are also available
 Requires=nebula.servers.service
 
 [Service]
@@ -16,5 +18,5 @@ ExecStart=/usr/bin/bash /opt/nebula/extensions/access/scripts/whitelist
 Restart=on-failure
 
 [Install]
-# This unit should start when nebula.servers.service is starting
-WantedBy=nebula.servers.service
+# This unit should start when nebula.core.extensions.service is starting
+WantedBy=nebula.core.extensions.service
