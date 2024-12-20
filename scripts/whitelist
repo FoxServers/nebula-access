@@ -1,5 +1,0 @@
-#!/bin/sh
-while true; do
-    sudo /opt/nebula/.venv/bin/python /opt/nebula/extensions/access/whitelist/pull_whitelists.py
-    sleep 10
-done

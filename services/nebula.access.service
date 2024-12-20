@@ -13,7 +13,7 @@ Requires=nebula.servers.service
 # User is root service user
 User=root
 # Run bash script for whitelist management
-ExecStart=/usr/bin/bash /opt/nebula/extensions/access/scripts/whitelist
+ExecStart=/opt/nebula/.venv/bin/python /opt/nebula/extensions/access/whitelist/pull_whitelists.py
 # Restart if script fails
 Restart=on-failure
 

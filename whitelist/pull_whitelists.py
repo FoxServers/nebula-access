@@ -26,13 +26,11 @@ file_paths = []
 for server in servers:
     file_paths.append(f"/srv/nebula/{server}/logs/latest.log")
 logger.debug(f"Found logreader configs in config.json: {redis_config, file_paths}")
-if redis_config["ip"] in config["redis"]:
-    host = redis_config["ip"]
+if redis_config:
+    host = redis_config.get("ip", "localhost")
+    port = redis_config.get("port", 6379)
 else:
-    host="localhost"
-if redis_config["port"] in config["redis"]:
-    port = redis_config["port"]
-else:
+    host = "localhost"
     port = 6379
 logger.debug(f"Communicating with redis at: {host, port}")
 
