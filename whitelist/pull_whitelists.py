@@ -10,6 +10,8 @@ from dotenv import load_dotenv
 logger = logging.getLogger(__file__)
 logging.basicConfig(filename='/opt/nebula/logs/whitelist.log', encoding='utf-8', level=logging.DEBUG)
 handler = logging.handlers.RotatingFileHandler(filename='/opt/nebula/logs/whitelist.log', mode='a', maxBytes=8000, backupCount=5, encoding='utf-8')
+formatter = logging.Formatter(fmt='%(asctime)s %(levelname)-8s %(message)s', datefmt='%Y-%m-%d %H:%M:%S')
+handler.setFormatter(formatter)
 logger.addHandler(handler)
 
 # Load the JSON data
@@ -27,10 +29,10 @@ for server in servers:
     file_paths.append(f"/srv/nebula/{server}/logs/latest.log")
 logger.debug(f"Found logreader configs in config.json: {redis_config, file_paths}")
 if redis_config:
-    host = redis_config.get("ip", "localhost")
+    host = redis_config.get("ip", "0.0.0.0")
     port = redis_config.get("port", 6379)
 else:
-    host = "localhost"
+    host = "0.0.0.0"
     port = 6379
 logger.debug(f"Communicating with redis at: {host, port}")
 
@@ -138,4 +140,7 @@ for message in pubsub.listen():
                     except:
                         logger.warning("[Whitelist] Error connecting to RCON, whitelist must be reloaded manually")
     else:
-        logger.warning("[Whitelist] No servers found in config.json file")
+        if not config:
+            logger.warning("[Whitelist] No servers found in config.json file")
+        else:
+            logger.warning("[Whitelist] No connection messages found")

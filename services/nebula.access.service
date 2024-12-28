@@ -16,6 +16,7 @@ User=root
 ExecStart=/opt/nebula/.venv/bin/python /opt/nebula/extensions/access/whitelist/pull_whitelists.py
 # Restart if script fails
 Restart=on-failure
+RestartSec=30
 
 [Install]
 # This unit should start when nebula.core.extensions.service is starting
